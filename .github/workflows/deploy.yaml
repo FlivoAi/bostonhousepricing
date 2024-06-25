@@ -1,0 +1,54 @@
+name: Deploy to Vertex AI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: flivo
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: install the gcloud cli
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GOOGLE_PROJECT }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+          
+
+      - name: build and push the docker image
+        env:
+          GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
+        run: |
+          gcloud auth configure-docker us-docker.pkg.dev
+          docker build -t model-img .
+          docker images
+          docker tag model-img us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/demo-test-1
+          docker images
+          docker push us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/demo-test-1
+      
+      - name: Create an endpoint in Vertex AI
+        run: |
+          gcloud ai endpoints create my-endpoint --location=us-central1(lowa)
+
+      - name: Deploy the model to the endpoint
+        run: |
+          gcloud ai models deploy my-model \
+            --endpoint=my-endpoint \
+            --region=us-central1(lowa) \
+            --model-dir=us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/
+
+      - name: Test the Vertex AI endpoint
+        run: |
+          # Add your test code he   
+          
+      # - name: Deploy to Vertex AI
+        # run: |        
+          # gcloud ai endpoints deploy demo-model \
+            # --image-uri us-docker.pkg.dev/genuine-quasar-425514-f6/model-img:latest \
+            # --region us-docker.pkg.dev
+            # us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project
