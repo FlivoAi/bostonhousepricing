@@ -1,6 +1,6 @@
 FROM python:3.7
 COPY . /app
-WORKDIR /app
-RUN pip install -r requirements.txt
-EXPOSE $PORT
-CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
+RUN pip install lightgbm pandas numpy scikit-learn google-cloud-aiplatform protobuf==3.20.3 google-cloud-storage
+COPY app.py ./app.py
+EXPOSE 8000
+ENTRYPOINT ["python", "app.py","8000"]
