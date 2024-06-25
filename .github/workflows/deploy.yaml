@@ -44,7 +44,7 @@ jobs:
 
       - name: Test the Vertex AI endpoint
         run: |
-          # Add your test code he   
+          # Add your test code here 
           
       # - name: Deploy to Vertex AI
         # run: |        
