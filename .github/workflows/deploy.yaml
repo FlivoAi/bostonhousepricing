@@ -44,7 +44,7 @@ jobs:
           gcloud ai models deploy demo-model \
             --endpoint=demo-model \
             --region=us-central1(lowa) \
-            --model-dir=us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/
+            # --model-dir=us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/
 
       - name: Test the Vertex AI endpoint
         run: |
