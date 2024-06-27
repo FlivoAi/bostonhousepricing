@@ -39,15 +39,15 @@ jobs:
         # run: |
           # gcloud ai endpoints create my-endpoint --location=us-central1(lowa)
 
-      - name: Deploy the model to the endpoint
-        run: |
-          gcloud ai models deploy demo-model \
-            --endpoint=demo-model \
-            --region=us-central1(lowa) \
+      # - name: Deploy the model to the endpoint
+        # run: |
+          # gcloud ai models deploy demo-model \
+            # --endpoint=demo-model \
+            # --region=us-central1(lowa) \
             # --model-dir=us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/
 
-      - name: Test the Vertex AI endpoint
-        run: |
+      # - name: Test the Vertex AI endpoint
+        # run: |
           # Add your test code here 
           
       # - name: Deploy to Vertex AI
