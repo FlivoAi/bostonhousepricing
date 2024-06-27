@@ -2,7 +2,7 @@ from google.cloud import aiplatform
 
 # Set your project ID and model ID
 project_id = "machine-learning-427708"
-model_id = "random_forest_model.pkl"
+model_id = "regmodel.pkl"
 
 # Initialize the Vertex AI client
 client = aiplatform.gapic.EndpointServiceClient(client_options={"api_endpoint": "us-central1-aiplatform.googleapis.com"})
