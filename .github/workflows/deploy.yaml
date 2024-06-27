@@ -29,7 +29,7 @@ jobs:
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
         run: |
-          gcloud auth configure-docker us-docker.pkg.dev
+          gcloud auth configure-docker \ us-central1-docker.pkg.dev
           docker build -t model-img .
           docker images
           docker tag model-img us-central1-docker.pkg.dev/machine-learning-427708/model-repo/demo-test-1
