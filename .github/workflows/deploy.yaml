@@ -48,10 +48,10 @@ jobs:
       # - name: Test the Vertex AI endpoint
         # run: |
           # Add your test code here 
-      - name: Install dependencies
-        run: |
-          pip install google-cloud-aiplatform
-          gcloud config set project machine-learning-427708
+      # - name: Install dependencies
+        # run: |
+          # pip install google-cloud-aiplatform
+          # gcloud config set project machine-learning-427708
        
       # - name: Deploy to Vertex AI
         # run: |
