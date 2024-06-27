@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # env:
       # REGION: us-central1(lowa)
       # ENDPOINT_NAME: demo-model
