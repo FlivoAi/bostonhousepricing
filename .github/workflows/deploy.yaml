@@ -53,9 +53,9 @@ jobs:
           pip install google-cloud-aiplatform
           gcloud config set project machine-learning-427708
        
-      - name: Deploy to Vertex AI
-        run: |
-            python3 deploy_to_vertex.py
+      # - name: Deploy to Vertex AI
+        # run: |
+            # python3 deploy_to_vertex.py
                       
         # gcloud ai endpoints deploy demo-model \
             # --image-uri us-docker.pkg.dev/genuine-quasar-425514-f6/model-img:latest \
