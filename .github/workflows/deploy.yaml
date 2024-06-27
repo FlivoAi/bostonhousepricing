@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # env:
       # REGION: us-central1(lowa)
       # ENDPOINT_NAME: demo-model
@@ -51,10 +51,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install google-cloud-aiplatform
-          gcloud auth login
           gcloud config set project machine-learning-427708
-          gcloud components install beta
-        
+       
       - name: Deploy to Vertex AI
         run: |
             python3 deploy_to_vertex.py
