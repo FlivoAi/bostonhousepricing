@@ -8,9 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      REGION: us-central1(lowa)
-      ENDPOINT_NAME: demo-model
+    # env:
+      # REGION: us-central1(lowa)
+      # ENDPOINT_NAME: demo-model
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,9 +30,9 @@ jobs:
           gcloud auth configure-docker us-docker.pkg.dev
           docker build -t model-img .
           docker images
-          docker tag model-img us-docker.pkg.dev/GOOGLE_PROJECT/model-project/demo-test-1
+          docker tag model-img us-central1-docker.pkg.dev/machine-learning-427708/model-repo/demo-test-1
           docker images
-          docker push us-docker.pkg.dev/GOOGLE_PROJECT/model-project/demo-test-1
+          docker push us-central1-docker.pkg.dev/machine-learning-427708/model-repo/demo-test-1
 
       
       # - name: Create an endpoint in Vertex AI
