@@ -21,10 +21,7 @@ jobs:
           project_id: ${{ secrets.GOOGLE_PROJECT }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      # - name: Install dependencies
-        # run: |
-          # gcloud components install beta
-    
+      
       - name: build and push the docker image
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
@@ -51,10 +48,18 @@ jobs:
       # - name: Test the Vertex AI endpoint
         # run: |
           # Add your test code here 
-          
-      # - name: Deploy to Vertex AI
-        # run: |        
-          # gcloud ai endpoints deploy demo-model \
+      - name: Install dependencies
+        run: |
+          pip install google-cloud-aiplatform
+          gcloud auth login
+          gcloud config set project machine-learning-427708
+          gcloud components install beta
+        
+      - name: Deploy to Vertex AI
+        run: |
+            python3 deploy_to_vertex.py
+                      
+        # gcloud ai endpoints deploy demo-model \
             # --image-uri us-docker.pkg.dev/genuine-quasar-425514-f6/model-img:latest \
             # --region us-docker.pkg.dev
             # us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project
