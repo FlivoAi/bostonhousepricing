@@ -30,9 +30,9 @@ jobs:
           gcloud auth configure-docker us-docker.pkg.dev
           docker build -t model-img .
           docker images
-          docker tag model-img us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/demo-test-1
+          docker tag model-img us-docker.pkg.dev/GOOGLE_PROJECT/model-project/demo-test-1
           docker images
-          docker push us-docker.pkg.dev/genuine-quasar-425514-f6/demo-project/demo-test-1
+          docker push us-docker.pkg.dev/GOOGLE_PROJECT/model-project/demo-test-1
 
       
       # - name: Create an endpoint in Vertex AI
