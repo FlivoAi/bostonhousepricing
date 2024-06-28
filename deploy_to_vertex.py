@@ -12,8 +12,8 @@ def deploy_model():
     model = aiplatform.Model.upload(
         display_name='my-model',
         # url_model="regmodel.pkl"
-        artifact_uri=f'gs://flivo-demo',
-        serving_container_image_uri='us-central1-docker.pkg.dev/{project_id}/test1/ml-img',
+        artifact_uri='gs://flivo-demo',
+        serving_container_image_uri=f'us-central1-docker.pkg.dev/{project_id}/test1/ml-img',
     )
     #creating endpoint 
     endpoint = aiplatform.Endpoint.create(
