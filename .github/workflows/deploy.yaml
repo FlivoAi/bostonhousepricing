@@ -48,14 +48,17 @@ jobs:
       # - name: Test the Vertex AI endpoint
         # run: |
           # Add your test code here 
-      # - name: Install dependencies
-        # run: |
-          # pip install google-cloud-aiplatform
-          # gcloud config set project machine-learning-427708
+      
+        # gcloud config set project machine-learning-427708
+  
           
       - name: Upload model to GCS
         run: |
            gsutil cp regmodel.pkl  gs://${{ secrets.GCS_BUCKET_NAME }}/regmodel.pkl
+
+      - name: Install dependencies
+        run: |
+          pip install google-cloud-aiplatform
        
       - name: Deploy to Vertex AI
         env:
