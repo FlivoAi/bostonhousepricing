@@ -1,19 +1,37 @@
+import os
 from google.cloud import aiplatform
+ 
+def deploy_model():
+    from google.cloud import aiplatform
+    project_id = {os.getenv('GOOGLE_PROJECT')}
+    region = "us-central1"  
+    # Initialize the Vertex AI client
+    aiplatform.init(project=os.getenv(project_id), location=region)
+        # Upload the model
+    model = aiplatform.Model.upload(
+        display_name='my-model',
+        # url_model="regmodel.pkl"
+        artifact_uri=f'gs://{os.getenv('GCS_BUCKET_NAME')}',
+        serving_container_image_uri=f'us-central1-docker.pkg.dev/{GOOGLE_PROJECT}}/test1/ml-img',
+    )
+    #creating endpoint 
+    endpoint = aiplatform.Endpoint.create(
+    project=project_id,
+    display_name="ml-endpoint",
+    location=region,  # Optional, change if needed
+    )
+    print(f"Endpoint created: {endpoint.name}")
 
-# Set your project ID and model ID
-project_id = "machine-learning-427708"
-model_id = "regmodel.pkl"
-
-# Initialize the Vertex AI client
-client = aiplatform.gapic.EndpointServiceClient(client_options={"api_endpoint": "us-central1-aiplatform.googleapis.com"})
-
-# Define the deployment parameters
-deployed_model = aiplatform.gapic.DeployedModel(
-    model=aiplatform.gapic.ModelName(project=project_id, location="us-central1", model=model_id),
-    display_name="rf_model",
-)
-
-# Deploy the model to an endpoint
-endpoint = client.create_endpoint(parent=f"projects/{project_id}/locations/us-central1", endpoint=deployed_model)
-
-print(f"Model deployed to endpoint: {endpoint.name}")
+    # Deploy the model to an endpoint
+    endpoint = model.deploy(
+        deployed_model_display_name='ml-endpoint',
+        machine_type='n2-standard-4',
+        min_replica_count=1,
+        max_replica_count=4,
+    )
+ 
+    print(f"Model deployed to endpoint: {endpoint.resource_name}")
+ 
+if __name__ == '__main__':
+    deploy_model()
+    
