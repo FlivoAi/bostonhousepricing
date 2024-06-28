@@ -18,8 +18,8 @@ def deploy_model():
     # Deploy the model to an endpoint
     endpoint = model.deploy(
         deployed_model_display_name='ml-endpoint',
-        machine_type='n1-standard-8',
-        min_replica_count=1,
+        machine_type='n1-highcpu-16',
+        min_replica_count=2,
         max_replica_count=4,
     )
  
