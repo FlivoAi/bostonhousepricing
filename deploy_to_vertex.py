@@ -13,7 +13,7 @@ def deploy_model():
         display_name='my-model',
         # url_model="regmodel.pkl"
         artifact_uri='gs://flivo-demo',
-        serving_container_image_uri=f'us-central1-docker.pkg.dev/{project_id}/test1/ml-img',
+        serving_container_image_uri=f'us-central1-docker.pkg.dev/{project_id}/test1/demo-test-1',
     )
     #creating endpoint 
     endpoint = aiplatform.Endpoint.create(
