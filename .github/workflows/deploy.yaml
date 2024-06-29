@@ -8,9 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-    # env:
-      # REGION: us-central1(lowa)
-      # ENDPOINT_NAME: demo-model
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
