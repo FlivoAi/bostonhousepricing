@@ -5,7 +5,7 @@ def deploy_model():
     from google.cloud import aiplatform
     project_id = os.getenv('GOOGLE_PROJECT')
     # bucket= os.getenv('GCS_BUCKET_NAME')
-    region = "asia-south1"  
+    region = "us-east5"  
     # Initialize the Vertex AI client
     aiplatform.init(project=os.getenv(project_id), location=region)
         # Upload the model
